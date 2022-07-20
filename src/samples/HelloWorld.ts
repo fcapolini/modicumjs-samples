@@ -1,7 +1,6 @@
-import Data from "../modicum/Data";
-import View from "../modicum/View";
+import { Data, View } from '../modicum/all';
 
-function helloWorld() {
+export default function helloWorld() {
 
 	/* Create a view inside page body */
 	const view = new View(View.body, {
@@ -20,8 +19,7 @@ function helloWorld() {
 	*/
 	const count = new Data(0).addConsumer(view);
 
-	/* Create a timer to periodically increment the dataset value */
+	/* Create a timer to increment the dataset value every second */
 	setInterval(() => count.setData(count.data + 1), 1000);
-}
 
-export default helloWorld;
+}

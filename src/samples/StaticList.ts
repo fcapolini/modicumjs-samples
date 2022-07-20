@@ -1,25 +1,44 @@
-import Data from "../modicum/Data";
-import View from "../modicum/View";
+import { Data, View } from '../modicum/all';
 
-function staticList() {
+export default function staticList() {
+
+	/* Create a list view in page body */
 	const view = new View(View.body, {
+
+		/* Its markup includes a `<h3>` for the title and a `<ul>` for the list */
 		markup: `<div>
-			<h3>[[title]]</h3>
-			<ul aka="list"></ul>
+			<h3>[[listTitle]]</h3>
+			<ul aka="listRoot"></ul>
 		</div>`,
-		ondata: (v: View, d) => v.set('title', d.title)
+
+		/* When data arrives, set its title */
+		ondata: (v: View, d) => v.set('listTitle', d.title),
+
+		/* Make nested views receive the `items` property in the datasource */
+		childrendata: (v: View, d) => d.items
 	});
 
+	/* Create a list item inside the list */
 	const item = new View(view, {
-		plug: 'list',
-		markup: `<li>[[title]]: [[count]]</li>`,
-		datapath: (v: View, d) => d.items,
+
+		/* Should be appended to `listRoot` slot */
+		plug: 'listRoot',
+
+		/* Its markup will display item title and value */
+		markup: `<li>[[itemTitle]]: [[itemValue]]</li>`,
+
+		/*
+			When data arrives, reflect set its title and value.
+			Since data is an array, this view will be replicated as needed.
+		*/
 		ondata: (v: View, d) => {
-			v.set('title', d.title);
-			v.set('count', d.count);
+			v.set('itemTitle', d.title);
+			v.set('itemValue', d.count);
 		}
+
 	});
 	
+	/* Create a simple data source to feed the list */
 	new Data({
 		title: 'Mail',
 		items: [
@@ -33,5 +52,3 @@ function staticList() {
 		]
 	}).addConsumer(view);
 }
-
-export default staticList;
