@@ -2,7 +2,7 @@
 
 A few simple examples using the [ModicumJS](https://github.com/fcapolini/modicumjs) minimalist reactive web framework.
 
-This is a VSCode project. It expects to have a sibling directory in its parent directory named `modicumjs` containing a copy of the ModicumJS project.
+This is a [VSCode](https://code.visualstudio.com/) project. It expects to have a sibling directory in its parent directory named `modicumjs` containing a copy of the ModicumJS project.
 
 It is configured to use the following (optional) VSCode extensions:
 * [Easy LESS](https://marketplace.visualstudio.com/items?itemName=mrcrowl.easy-less) &mdash; will automatically regenerate `app/css/styles.css` when changes made to `src/index.less`
