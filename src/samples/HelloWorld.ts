@@ -3,7 +3,7 @@ import View from "../modicum/View";
 
 function helloWorld() {
 
-	/* Create a view inside page's body */
+	/* Create a view inside page body */
 	const view = new View(View.body, {
 
 		/* Its markup contains a dynamic text named `elapsedSeconds` */
